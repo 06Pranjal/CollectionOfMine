@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Specificity is Inline Styles > Id selector >class and attribiute selectors> elment> universal selector */
+        h1{
+            color:aqua;
+        }
+        .yellow{
+            color: yellow;
+        }
+        .cred{
+            /* important keyword increase the specificity */
+            color: red !important;
+
+        }
+        .cpurple{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- inline style has more preference -->
+        <h1 style="color: blue;" class="yellow cred cpurple">CSS SPECIFICITY</h1>
+    </div>
+</body>
+</html>
