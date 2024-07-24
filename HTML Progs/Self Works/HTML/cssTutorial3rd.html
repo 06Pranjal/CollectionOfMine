@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+    <style>
+        /* element selector */
+        div{
+            background-color: red;
+        }
+        /* class selector */
+        .red{
+            background-color: blue;
+        }
+        /* id selector */
+        #green{
+            background-color: greenyellow;
+        }
+        /* child selector  */
+        /* should be the correct mapping of the child  */
+        div>p{
+            background-color: orangered;
+        }
+        /* desecandant selector */
+        div pre{
+            background-color:coral;
+        }
+        /* universal selector  */
+        *{
+            color: whitesmoke;
+        }
+        
+
+
+
+    </style>
+</head>
+<body>
+    <!-- element selector -->
+    <div>
+        I am a div
+    </div>
+    <br>
+    <!-- class selector  -->
+    <div class="red">
+        I am a div too
+    </div>
+    <br>
+    <!-- id selector  -->
+    <div id="green">
+        I am div tooooo
+    </div>
+    <br>
+    <!-- child selector  -->
+    <div>
+        <p>
+            i am a para inside div
+        </p></div>
+        <br>
+        <!-- desecandant selector  -->
+        <div>
+            <article>
+                <pre>I am a para in a article in a div</pre>
+            </article>
+        </div>
+    
+</body>
+</html>
