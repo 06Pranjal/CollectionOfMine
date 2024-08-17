@@ -18,6 +18,10 @@ let p;
 console.log(p)
 //for using let if we don't give the value to variable then it gives undefined.
 
+
 var o;
 console.log(o)
+//for using let if we don't give the value to variable then it gives undefined.
+
+//in using const this gives error as a value must be passed in this 
 
