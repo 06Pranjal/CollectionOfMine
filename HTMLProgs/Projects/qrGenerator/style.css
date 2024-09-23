@@ -4,7 +4,7 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
-    font-family: Poppins;
+    font-family: sans-serif;
     background-color: #dcdcdc;
 }
 
@@ -43,7 +43,7 @@ body{
     padding: 20px;
     background-color: #dcd9d9;
     border-radius: 20px;
-    font-family: Poppins;
+    font-family: sans-serif;
     outline: none;
 }
 
