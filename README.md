@@ -1,5 +1,5 @@
 # CollectionOfMine
-Author:- PRANJAL SINGH
+PRANJAL SINGH
 <br>
 This is a Tutorial to GitHub.
 <br>
