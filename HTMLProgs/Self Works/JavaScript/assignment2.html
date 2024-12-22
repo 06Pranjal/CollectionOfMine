@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantity Measurer</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            border: 2px solid black;
+            padding:5px;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>Cart Quantity</h1></center>
+    <div class="container">
+        <button class="button1" onclick="console.log('Your Cart has '+ product + ' Products')">
+            Show Quantity
+        </button>
+
+        <button class="button2" onclick="product=product+1;console.log('Your Cart has '+ product + ' Products')">
+            Add to Cart
+        </button>
+
+        <button class="button3" onclick="product=product+2;console.log('Your Cart has '+ product + ' Products')">
+            +2
+        </button>
+
+        <button class="button4" onclick="product=product+3;console.log('Your Cart has '+ product + ' Products')">
+            +3
+        </button>
+
+        <button class="button5"onclick="product=0;console.log('Your Cart has '+ product + ' Products')">
+            Reset Cart
+        </button>
+
+        <script>
+            let product=0;
+            console.log(product);
+        </script>
+
+    </div>
+</body>
+</html>
