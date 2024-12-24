@@ -1,72 +1,66 @@
-console.log("Welcome to classic Rock Paper Scissors")
-const score={
-    win:0,
-    loose:0,
-    ties:0
-}
-function computerMove(){
+console.log("Welcome to classic Rock Paper Scissors");
 
-const numberComputer= Math.random();
+// Load score from localStorage or initialize it if not present
+let score = JSON.parse(localStorage.getItem("score")) || { win: 0, loose: 0, ties: 0 };
 
-if(numberComputer>0 && numberComputer<=0.33){
-    return 'rock';
-
-}
-else if(numberComputer>0.33 && numberComputer<=0.66){
-    return 'paper';
-}
-else{
-    return 'scissors';
+// Function to save the score to localStorage
+function saveScoreToLocalStorage() {
+    localStorage.setItem("score", JSON.stringify(score));
 }
 
+function computerMove() {
+    const numberComputer = Math.random();
+
+    if (numberComputer > 0 && numberComputer <= 0.33) {
+        return 'rock';
+    } else if (numberComputer > 0.33 && numberComputer <= 0.66) {
+        return 'paper';
+    } else {
+        return 'scissors';
+    }
 }
 
-
-function win(player){
-    const moveComputer= computerMove();
+function win(player) {
+    const moveComputer = computerMove();
     console.log(`Player: ${player}, Computer: ${moveComputer}`);
     
     let result;
-    if (player===moveComputer){
-        result= "Match Tie";
+    if (player === moveComputer) {
+        result = "Match Tie";
         console.log(result);
         score.ties++;
         console.log(score);
         alert(`Match Tie!\nWins: ${score.win}, Losses: ${score.loose}, Ties: ${score.ties}`);
-
-    }
-
-    else if((player==='rock'&& moveComputer==='scissors') || 
-    (player==='paper'&& moveComputer==='rock') ||
-    (player==='scissors'&& moveComputer==='paper')
-){
-        result= "Player Wins";
-        
+    } else if (
+        (player === 'rock' && moveComputer === 'scissors') ||
+        (player === 'paper' && moveComputer === 'rock') ||
+        (player === 'scissors' && moveComputer === 'paper')
+    ) {
+        result = "Player Wins";
         console.log(result);
         score.win++;
         console.log(score);
         alert(`Player wins!\nWins: ${score.win}, Losses: ${score.loose}, Ties: ${score.ties}`);
-
-    }
-    else {
-        result= "Computer Wins";
+    } else {
+        result = "Computer Wins";
         console.log(result);
         score.loose++;
         console.log(score);
         alert(`Computer wins!\nWins: ${score.win}, Losses: ${score.loose}, Ties: ${score.ties}`);
-
     }
-    
-    
 
+    // Save updated score to localStorage
+    saveScoreToLocalStorage();
 }
 
-function resetscore(){
-    score.win=0;
-    score.loose=0;
-    score.ties=0;
+function resetscore() {
+    score.win = 0;
+    score.loose = 0;
+    score.ties = 0;
     console.log("Score Reset");
     console.log(score);
     alert(`Score Reset!\nWins: ${score.win}, Losses: ${score.loose}, Ties: ${score.ties}`);
-
+    
+    // Save reset score to localStorage
+    saveScoreToLocalStorage();
 }
