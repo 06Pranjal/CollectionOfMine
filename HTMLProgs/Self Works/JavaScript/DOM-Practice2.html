@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .container {
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            width: fit-content;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: white;
+        }
+
+        h3 {
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .Button {
+            padding: 12px 24px;
+            margin: 8px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(145deg, #2a5298, #1e3c72);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .Button:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .Button:active {
+            transform: translateY(10px);
+        }
+
+        .score-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .score-box {
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .score-label {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .score-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .win { color: #4CAF50; }
+        .loss { color: #f44336; }
+        .ties { color: #FFC107; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Rock-Paper-Scissors</h3>
+        
+        <button class="Button" onclick="player('rock')">🗿 Rock</button>
+        <button class="Button" onclick="player('paper')">📄 Paper</button>
+        <button class="Button" onclick="player('scissor')">✂️ Scissors</button>
+
+        <div class="score-container">
+            <div class="score-box">
+                <div class="score-label">Wins</div>
+                <h3 class="win score-value">0</h3>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Losses</div>
+                <h3 class="loss score-value">0</h3>
+            </div>
+            <div class="score-box">
+                <div class="score-label">Ties</div>
+                <h3 class="ties score-value">0</h3>
+            </div>
+        </div>
+
+        <button class="Button" onclick="reset()">🔄 Reset Score</button>
+    </div>
+
+    <script>
+        const score = {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        };
+
+        function computerMove() {
+            const value = Math.random();
+            if (value < 0.33) {
+                return "rock";
+            } else if (value > 0.33 && value < 0.66) {
+                return "paper";
+            } else {
+                return "scissor";
+            }
+        }
+
+        function player(playerChoice) {
+            const computerChoice = computerMove();
+            console.log(`Player: ${playerChoice}, Computer: ${computerChoice}`);
+
+            const resultElement = document.querySelector(`.${
+                playerChoice === computerChoice ? 'ties' : 
+                (playerChoice === 'rock' && computerChoice === 'scissor') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissor' && computerChoice === 'paper') ? 'win' : 'loss'
+            }`);
+
+            if (computerChoice === playerChoice) {
+                score.ties++;
+                document.querySelector('.ties').innerHTML = score.ties;
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissor') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissor' && computerChoice === 'paper')
+            ) {
+                score.wins++;
+                document.querySelector('.win').innerHTML = score.wins;
+            } else {
+                score.losses++;
+                document.querySelector('.loss').innerHTML = score.losses;
+            }
+
+            // Add animation to the score that changed
+            resultElement.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                resultElement.style.animation = '';
+            }, 500);
+        }
+
+        function reset() {
+            score.wins = 0;
+            score.losses = 0;
+            score.ties = 0;
+            document.querySelector('.win').innerHTML = score.wins;
+            document.querySelector('.loss').innerHTML = score.losses;
+            document.querySelector('.ties').innerHTML = score.ties;
+        }
+    </script>
+</body>
+</html>
