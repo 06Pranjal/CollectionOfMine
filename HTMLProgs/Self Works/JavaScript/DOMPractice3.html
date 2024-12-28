@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Amazon Shipping Calculator</title>
+   <style>
+       body {
+           font-family: 'Arial', sans-serif;
+           min-height: 100vh;
+           margin: 0;
+           padding: 20px;
+           background: linear-gradient(135deg, #232f3e, #37475a);
+           color: white;
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+
+       h1 {
+           color: #ff9900;
+           text-align: center;
+           font-size: 2.5em;
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+           margin-bottom: 30px;
+       }
+
+       h2 {
+           color: #ffffff;
+           font-size: 1.2em;
+           text-align: center;
+           margin: 10px 0;
+       }
+
+       .container {
+           background: rgba(255, 255, 255, 0.1);
+           backdrop-filter: blur(10px);
+           padding: 30px;
+           border-radius: 15px;
+           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+           max-width: 500px;
+           width: 90%;
+           margin: 20px auto;
+       }
+
+       #shippingForm {
+           display: flex;
+           flex-direction: column;
+           gap: 15px;
+           margin: 20px 0;
+       }
+
+       label {
+           font-size: 1.1em;
+           margin-bottom: 5px;
+       }
+
+       .orderAmount {
+           padding: 12px;
+           border: 2px solid #ff9900;
+           border-radius: 8px;
+           font-size: 1em;
+           background: rgba(255, 255, 255, 0.9);
+           transition: all 0.3s ease;
+       }
+
+       .orderAmount:focus {
+           outline: none;
+           border-color: #ff9900;
+           box-shadow: 0 0 10px rgba(255, 153, 0, 0.5);
+       }
+
+       .Submit {
+           padding: 12px 24px;
+           background: #ff9900;
+           border: none;
+           border-radius: 8px;
+           color: white;
+           font-size: 1.1em;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           text-transform: uppercase;
+           font-weight: bold;
+           letter-spacing: 1px;
+       }
+
+       .Submit:hover {
+           background: #ff8c00;
+           transform: translateY(-2px);
+           box-shadow: 0 5px 15px rgba(255, 153, 0, 0.3);
+       }
+
+       .Submit:active {
+           transform: translateY(0);
+       }
+
+       .result-container {
+           display: flex;
+           align-items: center;
+           gap: 10px;
+           margin-top: 20px;
+           font-size: 1.2em;
+       }
+
+       .value {
+           color: #ff9900;
+           font-weight: bold;
+           font-size: 1.4em;
+       }
+
+       @keyframes fadeIn {
+           from { opacity: 0; transform: translateY(20px); }
+           to { opacity: 1; transform: translateY(0); }
+       }
+
+       .container {
+           animation: fadeIn 0.5s ease-out;
+       }
+   </style>
+</head>
+<body>
+   <div class="container">
+       <h1>Amazon Shipping Calculator</h1>
+       <h2>Orders under $40 = +$10 shipping</h2>
+       <h2>Orders over $40 = FREE shipping</h2>
+       
+       <form id="shippingForm" onsubmit="event.preventDefault(); check();">
+           <label for="orderAmount">Enter your order amount:</label>
+           <input class="orderAmount" placeholder="Cost of Order" type="number" required>
+           <button type="submit" class="Submit">Calculate</button>
+       </form>
+       
+       <div class="result-container">
+           <h3>Total cost: $</h3>
+           <h3 class="value">0.00</h3>
+       </div>
+   </div>
+
+   <script>
+       function check() {
+           const orderAmount = parseFloat(document.querySelector('.orderAmount').value);
+           let shippingCost = 0;
+           
+           if(orderAmount <= 40){
+               shippingCost = 10;
+           }
+           
+           const total = (shippingCost + orderAmount).toFixed(2);
+           document.querySelector('.value').innerHTML = total;
+       }
+   </script>
+</body>
+</html>
