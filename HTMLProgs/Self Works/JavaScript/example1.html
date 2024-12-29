@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changing Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .color-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Class that will be toggled on click */
+        .changed {
+            background-color: #ff6b6b;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button class="color-button" onclick="changeColor(this)">Click Me!</button>
+
+    <script>
+        function changeColor(button) {
+            button.classList.toggle('changed');
+        }
+    </script>
+</body>
+</html>

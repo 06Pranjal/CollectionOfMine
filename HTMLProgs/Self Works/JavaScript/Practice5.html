@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection</title>
+    <style>
+        .selected{
+            background-color: black;
+            color: white;
+        }
+
+        .hover:hover{
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="hover" onclick="change(this)">Gaming</button>
+    <button class="hover" onclick="change(this)">Music</button>
+    <button class="hover" onclick="change(this)">Tech</button>
+    <br><br><br>
+    <button class="hover">Hover</button>
+
+    <script>
+
+        function change(button){
+            button.classList.toggle('selected');
+
+        }
+    
+
+    </script>
+    
+</body>
+</html>

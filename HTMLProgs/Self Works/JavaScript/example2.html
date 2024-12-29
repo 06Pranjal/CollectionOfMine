@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Color Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .color-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button class="color-button" onclick="changeColor(this)">Click Me!</button>
+
+    <script>
+        const colors = ['#4CAF50', '#2196F3', '#f44336', '#9C27B0', '#FF9800'];
+        let currentIndex = 0;
+
+        function changeColor(button) {
+            currentIndex = (currentIndex + 1) % colors.length;
+            button.style.backgroundColor = colors[currentIndex];
+        }
+    </script>
+</body>
+</html>
