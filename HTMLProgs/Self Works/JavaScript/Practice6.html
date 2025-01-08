@@ -1,42 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <style>
-        
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Calculator</title>
+   <style>
+       body {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           min-height: 100vh;
+           margin: 0;
+           background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+           font-family: 'Arial', sans-serif;
+       }
+
+       .container {
+           background: rgba(255, 255, 255, 0.1);
+           padding: 20px;
+           border-radius: 20px;
+           box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+           backdrop-filter: blur(10px);
+       }
+
+       .display {
+           width: calc(100% - 20px);
+           margin-bottom: 15px;
+           padding: 15px 10px;
+           font-size: 24px;
+           text-align: right;
+           background: rgba(255, 255, 255, 0.9);
+           border: none;
+           border-radius: 10px;
+           box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+       }
+
+       button {
+           width: 60px;
+           height: 60px;
+           margin: 5px;
+           font-size: 20px;
+           border: none;
+           border-radius: 50%;
+           cursor: pointer;
+           background: rgba(255, 255, 255, 0.1);
+           color: white;
+           transition: all 0.3s ease;
+       }
+
+       button:hover {
+           background: rgba(255, 255, 255, 0.2);
+           transform: translateY(-2px);
+           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+       }
+
+       button:active {
+           transform: translateY(0);
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+       }
+
+       /* Operator buttons */
+       button:nth-child(4),
+       button:nth-child(8),
+       button:nth-child(12),
+       button:nth-child(16) {
+           background: #ff9f1c;
+       }
+
+       button:nth-child(4):hover,
+       button:nth-child(8):hover,
+       button:nth-child(12):hover,
+       button:nth-child(16):hover {
+           background: #ffb347;
+       }
+
+       /* Equal button */
+       button:nth-child(15) {
+           background: #2ec4b6;
+       }
+
+       button:nth-child(15):hover {
+           background: #3dd1c4;
+       }
+
+       /* AC button */
+       button:last-child {
+           background: #e71d36;
+           width: calc(100% - 10px);
+           border-radius: 30px;
+       }
+
+       button:last-child:hover {
+           background: #f82e48;
+       }
+
+       /* Add gap between rows */
+       br {
+           display: block;
+           content: "";
+           margin-top: 5px;
+       }
+
+       /* Glass effect for container */
+       .container {
+           position: relative;
+           overflow: hidden;
+       }
+
+       .container::before {
+           content: '';
+           position: absolute;
+           top: 0;
+           left: 0;
+           right: 0;
+           bottom: 0;
+           background: linear-gradient(
+               45deg,
+               rgba(255, 255, 255, 0.1) 0%,
+               rgba(255, 255, 255, 0.05) 100%
+           );
+           z-index: -1;
+       }
+
+   </style>
 </head>
 <body>
-    <div class="container">
-    <form>
-        <input class="display">
-    </form>
-    <br>
-    
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>+</button>
-        <br>
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button>-</button>
-        <br>
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button>*</button>
-        <br>
-        <button>0</button>
-        <button>.</button>
-        <button>=</button>
-        <button>/</button>
-        <br>
-        <button>AC</button>
-    </div>
-    
+   <div class="container">
+       <form>
+           <input class="display">
+       </form>
+       <br>
+       <button>1</button>
+       <button>2</button>
+       <button>3</button>
+       <button>+</button>
+       <br>
+       <button>4</button>
+       <button>5</button>
+       <button>6</button>
+       <button>-</button>
+       <br>
+       <button>7</button>
+       <button>8</button>
+       <button>9</button>
+       <button>*</button>
+       <br>
+       <button>0</button>
+       <button>.</button>
+       <button>=</button>
+       <button>/</button>
+       <br>
+       <button>AC</button>
+   </div>
+
+   <script>
+    let display = document.querySelector('.display');
+    let buttons = document.querySelectorAll('button');
+    let expression = '';
+
+    // Add click event listener to all buttons
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            let value = button.textContent;
+
+            // Handle AC button
+            if(value === 'AC') {
+                expression = '';
+                display.value = '';
+            }
+            // Handle equals button
+            else if(value === '=') {
+                try {
+                    expression = eval(expression);
+                    display.value = expression;
+                } catch(error) {
+                    display.value = 'Error';
+                    expression = '';
+                }
+            }
+            // Handle other buttons (numbers and operators)
+            else {
+                expression += value;
+                display.value = expression;
+            }
+        });
+    });
+
+    // Prevent form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+    });
+</script>
 </body>
 </html>
