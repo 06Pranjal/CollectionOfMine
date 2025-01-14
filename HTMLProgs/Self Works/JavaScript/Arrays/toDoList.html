@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>ToDo List</h3>
+    <input placeholder="ToDo Name" class="name">
+    <button onclick="addTodo()">Add</button>
+    <button onclick="clearlist()">Clear</button>
+
+    <br>
+    <h4>The task to do:-</h4>
+    <p class="list"></p>
+    
+
+    <script>
+        let arr=[];
+        function addTodo(){
+            const input=document.querySelector('.name');
+            const name=input.value;
+
+
+    arr.push(name);
+    console.log(arr);
+    document.querySelector('.list').innerHTML=arr[name];
+
+    input.value='';
+
+        }
+
+function clearlist(){
+    arr=[];
+    console.log(arr);
+}
+
+
+    </script>
+
+</body>
+</html>
