@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="insert">
+            <button onclick="clicked()">Click Me...</button>
+        </div>
+    </div>
+    <script>
+        function clicked(){
+            let div=document.createElement("div");
+            div.innerHTML = "I am Clicked..<b>By You</b";
+            document.querySelector(".container").append(div);
+        }
+    </script>
+</body>
+</html>
