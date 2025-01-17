@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card-container {
+            display: none;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .card-container.visible {
+            display: block;
+        }
+
+        .video-card {
+            display: flex;
+            width: 100%;
+            height: 200px;
+            background-color: #0f0f0f;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .video-card:hover {
+            transform: scale(1.02);
+        }
+
+        .thumbnail {
+            position: relative;
+            width: 355px;
+            height: 100%;
+            background-image: url(https://i.ytimg.com/an_webp/9JaDBYPmiJ0/mqdefault_6s.webp?du=3000&sqp=CKynp7wG&rs=AOn4CLA6DVR8q-DVm-x2Db0RxaoA5qaHqw);
+
+            flex-shrink: 0;
+        }
+
+        .duration {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .content {
+            padding: 16px;
+            color: white;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .stats {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .channel-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-image:url(https://yt3.ggpht.com/ytc/AIdro_kX3sdbuu3KFmRPsmlu0R5Rx_BhpxwupjtvJmkEdNfla7w=s88-c-k-c0x00ffffff-no-rj);
+
+            margin-right: 12px;
+        }
+
+        .add-button {
+            padding: 12px 24px;
+            background-color: #0f0f0f;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+
+        .add-button:hover {
+            background-color: #2d2d2d;
+        }
+
+        .verified-icon {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background-image: url(download.png);
+            border-radius: 50%;
+            margin-left: 4px;
+            position: relative;
+            top: 2px;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <button class="add-button" onclick="toggleCard()">Toggle Card</button>
+    <div class="card-container" id="cardContainer">
+        <div class="video-card">
+            <div class="thumbnail">
+                <div class="duration">17:20</div>
+            </div>
+            <div class="content">
+                <div class="title">Backend, Node.js & npm | Sigma Web Development Course - Tutorial #85</div>
+                <div class="channel-info">
+                    <div class="channel-icon"></div>
+                    <div>
+                        <div class="stats">
+                            <span>CodeWithHarry</span>
+                            <span class="verified-icon"></span>
+                        </div>
+                        <div class="stats">
+                            <span>194K views</span>
+                            <span>•</span>
+                            <span>1 year ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard() {
+            const container = document.getElementById('cardContainer');
+            container.classList.toggle('visible');
+            
+            const button = document.querySelector('.add-button');
+            button.textContent = container.classList.contains('visible') ? 'Hide Card' : 'Show Card';
+        }
+    </script>
+</body>
+</html>

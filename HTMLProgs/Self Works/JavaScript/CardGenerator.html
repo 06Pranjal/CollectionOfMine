@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Card Generator</title>
+    <style>
+        /* Basic styling for the container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        /* Styling the button */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 3px solid black;
+            border-radius: 10px;
+            background-color: #2ecc71;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #2ecc71;
+            transform: scale(1.1);
+        }
+
+        /* Styling the card */
+        .card {
+            width:1000px;
+            height: 200px;
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color:black;
+            background-image: url();
+
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Button to generate cards -->
+        <button onclick="generateCard()">Generate Card</button>
+
+        <!-- Cards will be appended here -->
+        <div id="card-container"></div>
+    </div>
+
+    <script>
+        let cardCount = 0;
+
+        function generateCard() {
+            // Create a card div
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            // Add content to the card
+            card.innerHTML = `
+                <h3>Card Title ${++cardCount}</h3>
+                <p>This is a dynamically generated card. You can add more content here!</p>
+            `;
+
+            // Append the card to the card container
+            document.getElementById('card-container').append(card);
+        }
+    </script>
+</body>
+</html>
