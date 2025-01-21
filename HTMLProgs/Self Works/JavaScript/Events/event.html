@@ -7,13 +7,22 @@
 </head>
 <body>
     <div class="container">
-        <div class="box">Hey i am a box</div>
+        <div class="box">Double click to change and right click to know more</div>
     </div>
     <button id="btn"> change content</button>
     <script>
         const button = document.getElementById('btn');
-        button.addEventListener('click',()=>{
-            alert('i was clicked');
+        button.addEventListener('dblclick',()=>{
+            document.querySelector('.box').innerHTML = 'You were clicked'
+        })
+
+        button.addEventListener('contextmenu',()=>{
+            alert('dont hack us by right click please')
+            
+        })
+
+        button.addEventListener('keydown',(e)=>{
+            console.log(e)
         })
 
 
