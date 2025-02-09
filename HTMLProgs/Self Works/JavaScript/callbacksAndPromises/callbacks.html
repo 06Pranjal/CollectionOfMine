@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const callback = (arg) => {
+        console.log(arg);
+      };
+      const loadscript = (src, callback) => {
+        let sc = document.createElement("script");
+        sc.src = src;
+        sc.onload = callback("Henry");
+        document.head.append(sc);
+      };
+      loadscript(
+        "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js",
+        callback
+      );
+    </script>
+  </body>
+</html>
