@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Roamers</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="firebaseauth.js"></script>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <h2 id="formTitle">Welcome to Roamers</h2>
+        <p class="subtitle" id="formSubtitle">
+          Register yourself to start your journey
+        </p>
+
+        <form method="post" action="">
+          <div id="signUpMessage" class="messageDiv" style="display: no"></div>
+          <div class="input-group">
+            <input type="text" id="fName" required placeholder="First Name" />
+          </div>
+
+          <div class="input-group">
+            <input type="text" id="lName" required placeholder="Last Name" />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              id="rEmail"
+              required
+              placeholder="Email address"
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="rPassword"
+              required
+              placeholder="Password"
+              minlength="6"
+            />
+          </div>
+          <button class="btn" type="submit" id="submitSignUp">Sign In</button>
+        </form>
+
+        <p class="toggle-text">
+          <span id="toggleText">Need an account?</span>
+          <a href="#" onclick="toggleMode(event)" id="toggleBtn">Sign Up</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

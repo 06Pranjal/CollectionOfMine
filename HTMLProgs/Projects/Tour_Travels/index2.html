@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wanderlust Travel</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: #ffffff;
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #2c3e50;
+        font-weight: 500;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("/api/placeholder/1200/800") center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding: 0 1rem;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .search-bar {
+        background: white;
+        padding: 1rem;
+        border-radius: 5px;
+        display: flex;
+        gap: 1rem;
+        max-width: 800px;
+        margin: 2rem auto;
+      }
+
+      .search-bar input,
+      .search-bar select {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        flex: 1;
+      }
+
+      .search-bar button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 0.5rem 2rem;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      /* Popular Destinations */
+      .destinations {
+        padding: 4rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .destination-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .destination-card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .destination-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .destination-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 1rem;
+      }
+
+      .card-content h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .price {
+        color: #3498db;
+        font-weight: bold;
+      }
+
+      /* Special Offers */
+      .offers {
+        background: #f8f9fa;
+        padding: 4rem 1rem;
+      }
+
+      .offer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 4rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .testimonial-card {
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Footer */
+      footer {
+        background: #2c3e50;
+        color: white;
+        padding: 4rem 1rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section ul li a {
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .search-bar {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Wanderlust</div>
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#destinations">Destinations</a>
+          <a href="#offers">Offers</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Discover Your Next Adventure</h1>
+        <p>Explore the world's most beautiful destinations</p>
+        <div class="search-bar">
+          <input type="text" placeholder="Where to?" />
+          <input type="date" />
+          <select>
+            <option>2 Adults</option>
+            <option>1 Adult</option>
+            <option>3 Adults</option>
+            <option>4 Adults</option>
+          </select>
+          <button>Search</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="destinations" id="destinations">
+      <h2 class="section-title">Popular Destinations</h2>
+      <div class="destination-grid">
+        <div class="destination-card">
+          <img src="/api/placeholder/400/300" alt="Destination 1" />
+          <div class="card-content">
+            <h3>Paris, France</h3>
+            <p>Experience the city of love</p>
+            <p class="price">From $899</p>
+          </div>
+        </div>
+        <div class="destination-card">
+          <img src="/api/placeholder/400/300" alt="Destination 2" />
+          <div class="card-content">
+            <h3>Bali, Indonesia</h3>
+            <p>Paradise island getaway</p>
+            <p class="price">From $799</p>
+          </div>
+        </div>
+        <div class="destination-card">
+          <img src="/api/placeholder/400/300" alt="Destination 3" />
+          <div class="card-content">
+            <h3>Tokyo, Japan</h3>
+            <p>Modern meets traditional</p>
+            <p class="price">From $999</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offers" id="offers">
+      <h2 class="section-title">Special Offers</h2>
+      <div class="offer-grid">
+        <div class="destination-card">
+          <img src="/api/placeholder/400/300" alt="Special Offer 1" />
+          <div class="card-content">
+            <h3>Summer Special</h3>
+            <p>20% off on beach destinations</p>
+            <p class="price">Book Now</p>
+          </div>
+        </div>
+        <div class="destination-card">
+          <img src="/api/placeholder/400/300" alt="Special Offer 2" />
+          <div class="card-content">
+            <h3>Early Bird</h3>
+            <p>15% off on advance bookings</p>
+            <p class="price">Book Now</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2 class="section-title">What Our Travelers Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>"Amazing experience! The trip was perfectly organized."</p>
+          <h4>- John Doe</h4>
+        </div>
+        <div class="testimonial-card">
+          <p>"Best travel agency I've ever used. Highly recommended!"</p>
+          <h4>- Jane Smith</h4>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>
+            We make your travel dreams come true with expertly planned trips and
+            exceptional service.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#offers">Special Offers</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <ul>
+            <li>Email: info@wanderlust.com</li>
+            <li>Phone: +1 234 567 890</li>
+            <li>Address: 123 Travel Street</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Search functionality
+      document
+        .querySelector(".search-bar button")
+        .addEventListener("click", function () {
+          const destination = document.querySelector(
+            '.search-bar input[type="text"]'
+          ).value;
+          const date = document.querySelector(
+            '.search-bar input[type="date"]'
+          ).value;
+          const travelers = document.querySelector(".search-bar select").value;
+
+          if (!destination || !date) {
+            alert("Please fill in all required fields");
+            return;
+          }
+
+          alert(
+            `Searching for: ${destination}\nDate: ${date}\nTravelers: ${travelers}`
+          );
+          // Here you would typically make an API call to search for available trips
+        });
+
+      // Dynamic header background on scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = "#ffffff";
+          header.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+        } else {
+          header.style.backgroundColor = "#ffffff";
+          header.style.boxShadow = "none";
+        }
+      });
+
+      // Initialize destination cards with hover effects
+      const cards = document.querySelectorAll(".destination-card");
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-5px)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+        });
+      });
+    </script>
+  </body>
+</html>
