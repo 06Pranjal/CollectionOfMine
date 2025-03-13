@@ -1,18 +1,17 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+// Import the necessary Firebase SDK modules
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import {
   getFirestore,
   setDoc,
   doc,
-} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBTf3i381AZZtlGLPbPUGevmvTNnilQrc4",
   authDomain: "tourntravel-8fcd7.firebaseapp.com",
@@ -24,8 +23,75 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
 
-const signUp = document.getElementById("submitSignUp");
-signUp.addEventListener("click", (event) => {
+// Function to display messages
+function showMessage(message, divId) {
+  const messageDiv = document.getElementById(divId);
+  messageDiv.style.display = "block";
+  messageDiv.innerHTML = message;
+  setTimeout(() => {
+    messageDiv.style.display = "none";
+  }, 4000);
+}
+
+// Sign-Up Function
+document.getElementById("signUpForm").addEventListener("submit", (event) => {
   event.preventDefault();
+
+  const email = document.getElementById("rEmail").value;
+  const password = document.getElementById("rPassword").value;
+  const firstName = document.getElementById("fName").value;
+  const lastName = document.getElementById("lName").value;
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      return setDoc(doc(db, "users", user.uid), {
+        email,
+        firstName,
+        lastName,
+      });
+    })
+    .then(() => {
+      showMessage("Account Created Successfully", "signUpMessage");
+      setTimeout(() => {
+        window.location.href = "main.html"; // Redirect after success
+      }, 1500);
+    })
+    .catch((error) => {
+      showMessage(error.message, "signUpMessage");
+    });
+});
+
+// Sign-In Function
+document.getElementById("signInForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      localStorage.setItem("loggedInUserId", userCredential.user.uid);
+      showMessage("Login successful!", "signInMessage");
+      setTimeout(() => {
+        window.location.href = "main.html"; // Redirect after login
+      }, 1500);
+    })
+    .catch((error) => {
+      showMessage("Incorrect Email or Password", "signInMessage");
+    });
+});
+
+// Switch between sign-up and sign-in forms
+document.getElementById("switchToSignIn").addEventListener("click", () => {
+  document.getElementById("signUpBox").style.display = "none";
+  document.getElementById("signInBox").style.display = "block";
+});
+
+document.getElementById("switchToSignUp").addEventListener("click", () => {
+  document.getElementById("signUpBox").style.display = "block";
+  document.getElementById("signInBox").style.display = "none";
 });

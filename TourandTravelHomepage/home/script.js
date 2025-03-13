@@ -1,64 +1,65 @@
-// let isSignUp = false;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import {
+  getFirestore,
+  getDoc,
+  doc,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-// function toggleMode(e) {
-//   e.preventDefault();
-//   isSignUp = !isSignUp;
+const firebaseConfig = {
+  apiKey: "AIzaSyBTf3i381AZZtlGLPbPUGevmvTNnilQrc4",
+  authDomain: "tourntravel-8fcd7.firebaseapp.com",
+  projectId: "tourntravel-8fcd7",
+  storageBucket: "tourntravel-8fcd7.firebasestorage.app",
+  messagingSenderId: "1002410592088",
+  appId: "1:1002410592088:web:bb14c934d0bf50be23c72d",
+};
 
-//   const formTitle = document.getElementById("formTitle");
-//   const formSubtitle = document.getElementById("formSubtitle");
-//   const submitBtn = document.getElementById("submitBtn");
-//   const toggleText = document.getElementById("toggleText");
-//   const toggleBtn = document.getElementById("toggleBtn");
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-//   if (isSignUp) {
-//     formTitle.textContent = "Start Your Journey";
-//     formSubtitle.textContent =
-//       "Create an account to explore amazing destinations";
-//     submitBtn.textContent = "Sign Up";
-//     toggleText.textContent = "Already have an account?";
-//     toggleBtn.textContent = "Sign In";
-//   } else {
-//     formTitle.textContent = "Welcome to Roamers";
-//     formSubtitle.textContent = "Sign in to start your journey";
-//     submitBtn.textContent = "Sign In";
-//     toggleText.textContent = "Need an account?";
-//     toggleBtn.textContent = "Sign Up";
-//   }
-// }
+const auth = getAuth();
+const db = getFirestore();
 
-// function showToast(message, isError = false) {
-//   const toast = document.getElementById("toast");
-//   toast.textContent = message;
-//   toast.className = "toast show" + (isError ? " error" : "");
+onAuthStateChanged(auth, (user) => {
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  if (loggedInUserId) {
+    console.log(user);
+    const docRef = doc(db, "users", loggedInUserId);
+    getDoc(docRef)
+      .then((docSnap) => {
+        if (docSnap.exists()) {
+          const userData = docSnap.data();
+          document.getElementById("loggedUserFName").innerText =
+            userData.firstName;
+          document.getElementById("loggedUserEmail").innerText = userData.email;
+          document.getElementById("loggedUserLName").innerText =
+            userData.lastName;
+        } else {
+          console.log("no document found matching id");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document");
+      });
+  } else {
+    console.log("User Id not Found in Local storage");
+  }
+});
 
-//   setTimeout(() => {
-//     toast.className = "toast";
-//   }, 3000);
-// }
+const logoutButton = document.getElementById("logout");
 
-// function handleSubmit(e) {
-//   e.preventDefault();
-
-//   const email = document.getElementById("email").value;
-//   const password = document.getElementById("password").value;
-
-//   // Simple validation
-//   if (password.length < 6) {
-//     showToast("Password must be at least 6 characters long", true);
-//     return;
-//   }
-
-//   // In a real application, you would handle authentication here
-//   // For this demo, we'll just show a success message and redirect
-//   if (isSignUp) {
-//     showToast("Account created successfully!");
-//     setTimeout(() => {
-//       window.location.href = "main.html";
-//     }, 1500);
-//   } else {
-//     showToast("Welcome back!");
-//     setTimeout(() => {
-//       window.location.href = "main.html";
-//     }, 1500);
-//   }
-// }
+logoutButton.addEventListener("click", () => {
+  localStorage.removeItem("loggedInUserId");
+  signOut(auth)
+    .then(() => {
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      console.error("Error Signing out:", error);
+    });
+});

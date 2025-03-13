@@ -4,28 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Roamers</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="firebaseauth.js"></script>
   </head>
   <body>
-    <div class="login-container">
-      <div class="login-box">
-        <h2 id="formTitle">Welcome to Roamers</h2>
-        <p class="subtitle" id="formSubtitle">
-          Register yourself to start your journey
-        </p>
+    <div class="auth-container">
+      <!-- Sign Up Form -->
+      <div class="auth-box" id="signUpBox">
+        <div class="auth-header">
+          <h2>Welcome to Roamers</h2>
+          <p>Begin your journey with us</p>
+        </div>
 
-        <form method="post" action="">
-          <div id="signUpMessage" class="messageDiv" style="display: no"></div>
+        <form id="signUpForm">
+          <div id="signUpMessage" class="message-div"></div>
+
           <div class="input-group">
+            <i class="fas fa-user"></i>
             <input type="text" id="fName" required placeholder="First Name" />
           </div>
 
           <div class="input-group">
+            <i class="fas fa-user"></i>
             <input type="text" id="lName" required placeholder="Last Name" />
           </div>
 
           <div class="input-group">
+            <i class="fas fa-envelope"></i>
             <input
               type="email"
               id="rEmail"
@@ -33,7 +42,9 @@
               placeholder="Email address"
             />
           </div>
+
           <div class="input-group">
+            <i class="fas fa-lock"></i>
             <input
               type="password"
               id="rPassword"
@@ -42,17 +53,83 @@
               minlength="6"
             />
           </div>
-          <button class="btn" type="submit" id="submitSignUp">Sign In</button>
+
+          <button type="submit" id="submitSignUp" class="auth-btn">
+            Sign Up
+          </button>
         </form>
 
-        <p class="toggle-text">
-          <span id="toggleText">Need an account?</span>
-          <a href="#" onclick="toggleMode(event)" id="toggleBtn">Sign Up</a>
-        </p>
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="social-auth">
+          <button class="social-btn google">
+            <i class="fab fa-google"></i>
+            Google
+          </button>
+          <button class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i>
+            Facebook
+          </button>
+        </div>
+      </div>
+
+      <!-- Sign In Form -->
+      <div class="auth-box" id="signInBox">
+        <div class="auth-header">
+          <h2>Welcome Back</h2>
+          <p>Sign in to continue your journey</p>
+        </div>
+
+        <form id="signInForm">
+          <div id="signInMessage" class="message-div"></div>
+
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="Email address"
+            />
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Password"
+            />
+          </div>
+
+          <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <button type="submit" id="submitSignIn" class="auth-btn">
+            Sign In
+          </button>
+        </form>
+
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+
+        <div class="social-auth">
+          <button class="social-btn google">
+            <i class="fab fa-google"></i>
+            Google
+          </button>
+          <button class="social-btn facebook">
+            <i class="fab fa-facebook-f"></i>
+            Facebook
+          </button>
+        </div>
       </div>
     </div>
-
-    <div id="toast" class="toast"></div>
 
     <script src="script.js"></script>
   </body>
